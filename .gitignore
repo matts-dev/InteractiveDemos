@@ -1,0 +1,5 @@
+
+# ignore cmake intermediates when using vscode
+*.idx
+.cache
+build
