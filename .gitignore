@@ -3,3 +3,6 @@
 *.idx
 .cache
 build
+em-build
+no-git
+.vscode 
