@@ -778,7 +778,7 @@ void BarycentricsDemo::tick(float dt_sec)
 }
 
 
-void BarycentricsDemo::gatherInteractableCubeObjects(std::vector<const TriangleList_SNO*>& objectList)
+void BarycentricsDemo::gatherInteractableCubeObjects(std::vector<const TutorialEngine::TriangleList_SNO*>& objectList)
 {
 	InteractableDemoBase::gatherInteractableCubeObjects(objectList);
 

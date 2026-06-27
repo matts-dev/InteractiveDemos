@@ -117,7 +117,9 @@ namespace Engine
 
 	sp<Engine::Window> EngineBase::makeInitialWindow()
 	{
-		int width = 1440, height = 810;
+		// int width = 1440, height = 810;
+		int width = RenderSystem::default_width;
+		int height = RenderSystem::default_height;
 		sp<Window> window = new_sp<Window>(width, height);
 		ec(glViewport(0, 0, width, height)); //#TODO, should we do this in the EngineBase level on "glfwSetFramebufferSizeCallback" changed?
 		return window;

@@ -64,4 +64,5 @@ namespace Engine
 		Curve_highp curve_sigmoidmedp;
 	};
 
+	typedef CurveManager CurveSystem; //CurveManager is a port of CurveSystem!
 }

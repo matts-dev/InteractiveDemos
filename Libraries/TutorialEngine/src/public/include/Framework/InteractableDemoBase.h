@@ -95,7 +95,10 @@ namespace TutorialEngine
 	protected:
 		bool bInitOnPostConstruct = true;
 		bool bRegisterEditorUiOnPostConstruct = true;
+		bool autoRegisterRenderGame = true;
+		bool bAutoRegisterTick = true;
 		bool bRenderLineGeneration = true;
+		bool bLeftMouseCanSelect = true; //difference from ported application
 		float lineCreationDistFromCamera = 5.0f;
 		float lineCreationDistAdjustSpeedSec = 5.0f;
 	private: //statics

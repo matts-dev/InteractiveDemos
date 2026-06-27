@@ -37,5 +37,6 @@ add_subdirectory("Applications/BarycentricCoordinates")
 add_subdirectory("Applications/SeparatingAxisTheorem")
 add_subdirectory("Applications/GeometricAlgebra")
 add_subdirectory("Applications/Review_DotProduct") 
+add_subdirectory("Applications/MollerTrumboreRayTriangle")
 
 message(STATUS " ------------------------------------------------------------------------------------")

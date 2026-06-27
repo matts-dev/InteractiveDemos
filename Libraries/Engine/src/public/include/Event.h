@@ -27,7 +27,7 @@ namespace Engine
 	{
 	};
 
-//#define event_this() std::static_pointer_cast< std::remove_reference<decltype(*this)>::type >(sp_this())
+#define event_this() std::static_pointer_cast< std::remove_reference<decltype(*this)>::type >(sp_this())
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Dev Notes:

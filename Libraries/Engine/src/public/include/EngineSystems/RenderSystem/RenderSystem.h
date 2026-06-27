@@ -38,6 +38,9 @@ namespace Engine
 		IMPLEMENT_PUBLIC_STATIC_GET(RenderSystem, SystemBase);
 	public:
 		Event<float /*deltaSec*/> onRenderDispatch;
+
+		static int default_width;
+		static int default_height;
 	private:
 		sp<FrameRenderData> frameRenderData = nullptr;
 		std::vector<sp<ICamera>> renderCameras;

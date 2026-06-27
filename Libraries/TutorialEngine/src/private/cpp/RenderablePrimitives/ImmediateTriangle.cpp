@@ -28,8 +28,9 @@ namespace TutorialEngine
 			//glBindVertexArray(vao);
 			ec(glDrawArrays(bWireFrame ? GL_LINE_LOOP : GL_TRIANGLES, 0, 3));
 		}
-
 	}
+
+	
 
 	void ImmediateTriangle::onAcquireGPUResources()
 	{

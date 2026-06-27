@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "EngineSystems/RenderSystem/Rendering/GPUResource.h"
+#include "Tools/RemoveSpecialMemberFunctionUtils.h"
 
 namespace Engine { class Shader;}
 

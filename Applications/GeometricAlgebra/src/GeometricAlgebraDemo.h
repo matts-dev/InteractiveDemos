@@ -20,6 +20,6 @@ protected:
 	virtual void render_game(float dt_sec) override;
 	virtual void render_UI() override;
 	virtual void tick(float dt_sec) override;
-	virtual void gatherInteractableCubeObjects(std::vector<const TriangleList_SNO*>& objectList) override;
+	virtual void gatherInteractableCubeObjects(std::vector<const TutorialEngine::TriangleList_SNO*>& objectList) override;
 
 };

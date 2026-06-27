@@ -1,4 +1,6 @@
 #include "Framework/DrawVectorDemo.h"
+#include "EngineSystems/RenderSystem/RenderSystem.h"
+#include "EngineSystems/WindowSystem/WindowSystem.h"
 #include "Utils/Platform/PlatformUtils.h"
 #include "EngineSystems/WindowSystem/WindowWrapper.h"
 
@@ -153,23 +155,73 @@ void DrawVectorDemo::tick(float dt_sec)
 	tick_selectVectors(/*dt_sec*/);
 
 	tick_dragPoint(/*dt_sec*/);
+
 }
 
 void DrawVectorDemo::inputPoll(float dt_sec)
 {
 	InteractableDemoBase::inputPoll(dt_sec);
 	
-	const sp<Engine::FrameRenderData>& rd = Engine::RenderSystem::get().getFrameRenderData();
-	if (rd && rd->window)
+	// const sp<Engine::FrameRenderData>& rd = Engine::RenderSystem::get().getFrameRenderData();
+	// if (rd && rd->window)
+	// {
+	// 	bAltWasPressed = 
+	// 		glfwGetKey(rd->window->get(), GLFW_KEY_LEFT_ALT) == GLFW_PRESS 
+	// 		|| glfwGetKey(rd->window->get(), GLFW_KEY_RIGHT_ALT) == GLFW_PRESS;
+	// }
+	// else 
+	// {
+	// 	//this will be null before initialziation... probably an issue...
+	// 	// STOP_DEBUGGER_HERE(); 
+	// }
+
+	// NEW ADDITION FROM PORTING -- delete the selected vector!
+	if (const sp<Engine::Window>& window_wrapper = Engine::WindowSystem::get().getPrimaryWindow())
 	{
-		bAltWasPressed = 
-			glfwGetKey(rd->window->get(), GLFW_KEY_LEFT_ALT) == GLFW_PRESS 
-			|| glfwGetKey(rd->window->get(), GLFW_KEY_RIGHT_ALT) == GLFW_PRESS;
-	}
-	else 
-	{
-		//this will be null before initialziation... probably an issue...
-		// STOP_DEBUGGER_HERE(); 
+		if (GLFWwindow* window = window_wrapper->get())
+		{
+			bAltWasPressed = 
+				glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS 
+				|| glfwGetKey(window, GLFW_KEY_RIGHT_ALT) == GLFW_PRESS;
+
+			if (glfwGetKey(window, GLFW_KEY_DELETE) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_BACKSPACE))
+			{
+				if (bAltWasPressed)
+				{
+					//if holding alt, delete all the things.
+					selectionFormer = nullptr;
+					selectionLater = nullptr;
+					customVectors.clear();
+					customPoints.clear();
+				}
+				else 
+				{
+					if (selectionLater != nullptr 
+						&& customVectors.size() > 0)	
+					{
+						std::size_t selection_index = customVectors.size();
+						
+						for(std::size_t remove_idx = 0; remove_idx < customVectors.size(); ++remove_idx)
+						// for(const sp<TutorialEngine::ClickableVisualVector>& customVec : customVectors )
+						{
+							const sp<TutorialEngine::ClickableVisualVector>& customVec = customVectors[remove_idx];
+							if (customVec == selectionLater)
+							{
+								selection_index = remove_idx;
+							}
+						}
+	
+						const bool found_remove = selection_index < customVectors.size();
+						if (found_remove)
+						{
+							std::size_t last_idx = customVectors.size() - 1;
+							std::swap(customVectors[selection_index], customVectors[last_idx]); //swap before pop
+							customVectors.pop_back(); //remove the swaped to back
+						}
+					}
+				}
+			}
+		}
 	}
 
 }

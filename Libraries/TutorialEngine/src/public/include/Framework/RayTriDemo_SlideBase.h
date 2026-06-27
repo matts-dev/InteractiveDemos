@@ -6,6 +6,7 @@
 
 namespace TutorialEngine
 {
+	/** This is the ported version of the class, which is more generally usable and does not need the base ray triangel demo set up. */
 	class RayTriDemo_SlideBase : public DrawVectorDemo
 	{
 	protected:

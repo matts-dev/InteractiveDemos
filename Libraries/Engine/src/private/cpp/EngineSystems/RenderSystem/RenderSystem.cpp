@@ -10,6 +10,10 @@
 
 namespace Engine
 {
+	/*static*/ int RenderSystem::default_width = 1440;
+	/*static*/ int RenderSystem::default_height = 810;
+
+
 	void RenderSystem::initSystem()
 	{
 		createRenderData();

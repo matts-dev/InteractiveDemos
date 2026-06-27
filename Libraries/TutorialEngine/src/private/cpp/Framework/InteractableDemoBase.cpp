@@ -121,7 +121,10 @@ namespace TutorialEngine
 #endif //WITH_IMGUI
 		}
 
-		Engine::EngineBase::get().getGameTimeManager().getEvent(TickGroups::get().GAME).addWeakObj(sp_this(), &InteractableDemoBase::tick);
+		if (bAutoRegisterTick)
+		{
+			Engine::EngineBase::get().getGameTimeManager().getEvent(TickGroups::get().GAME).addWeakObj(sp_this(), &InteractableDemoBase::tick);
+		}
 	}
 
 	void InteractableDemoBase::render_game(float /*dt_sec*/)
@@ -198,7 +201,10 @@ namespace TutorialEngine
 
 		instanceCount++;
 
-		RenderSystem::get().onRenderDispatch.addWeakObj(sp_this(), &InteractableDemoBase::render_game);
+		if (autoRegisterRenderGame)
+		{
+			RenderSystem::get().onRenderDispatch.addWeakObj(sp_this(), &InteractableDemoBase::render_game);
+		}
 
 		//TEST INPUT DELAY
 		if (const sp<Window>& primaryWindow = WindowSystem::get().getPrimaryWindow())
@@ -218,7 +224,7 @@ namespace TutorialEngine
 			bool bSHIFT = glfwGetKey(glfwWindow, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS || glfwGetKey(glfwWindow, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS;
 
 			if (glfwGetMouseButton(glfwWindow, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS 
-				|| glfwGetMouseButton(glfwWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+				|| (glfwGetMouseButton(glfwWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && bLeftMouseCanSelect))
 			{
 				if (!bSelectButtonPressed) //must be in a separate branch from above to prevent releasing hold
 				{

@@ -107,7 +107,7 @@ void GeometricAlgebraDemo::tick(float dt_sec)
 	InteractableDemoBase::tick(dt_sec);
 }
 
-void GeometricAlgebraDemo::gatherInteractableCubeObjects(std::vector<const TriangleList_SNO*>& objectList)
+void GeometricAlgebraDemo::gatherInteractableCubeObjects(std::vector<const TutorialEngine::TriangleList_SNO*>& objectList)
 {
 	InteractableDemoBase::gatherInteractableCubeObjects(objectList);
 }

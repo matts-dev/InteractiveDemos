@@ -206,10 +206,11 @@ namespace Engine
 		if (!window)
 		{
 			glfwTerminate();
-			throw std::runtime_error("FATAL: FAILED TO CREATE WINDOW");
+			throw std::runtime_error("FATAL: FAILED TO CREATE WINDOW");// - common cause: no libEGL/libGLESv2 dyn library file");
 		}
-
-		//must be done everytime something is rendered to this window
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// !! CRASH HERE? !! make on windows make sure your /build/project folder has libEGL.dll and libGLESv2.dll copied over there.
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		glfwMakeContextCurrent(window);
 		post_context_init_setup();
 		//glfwSwapInterval(0);
